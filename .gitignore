@@ -1,0 +1,9 @@
+# 不部署的文件
+*.docx
+*.ps1
+*.txt
+_generator/
+_temp_day1/
+钱江源研学图片/
+附件*
+.claude/

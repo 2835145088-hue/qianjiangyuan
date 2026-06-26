@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>红脉护绿源 —— 开化"大思政"视域下地理研学实践方案</title>
+
+    <!-- ============ 外部资源 ============ -->
+    <!-- Google Fonts: 衬线字体（新中式风格） -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- ============ CSS 样式 ============ -->
+    <style>
+        /* ===== CSS 变量（配色方案） ===== */
+        :root {
+            --red-deep: #8B2D3B;        /* 沉稳中国红 */
+            --red-light: #B84556;       /* 亮红 */
+            --green-deep: #1A5C3A;      /* 森林墨绿 */
+            --green-mid: #2D8B4E;       /* 中间绿 */
+            --green-light: #4CAF6B;     /* 亮绿 */
+            --gold: #BF9A4A;            /* 典雅金 */
+            --gold-light: #D4B86A;      /* 浅金 */
+            --bg-warm: #FBF8F2;         /* 暖白背景 */
+            --bg-cream: #F5F0E6;        /* 奶油色 */
+            --bg-green-pale: #EDF4EC;   /* 极浅绿 */
+            --bg-red-pale: #FBF5F5;     /* 极浅红 */
+            --text-dark: #2C2416;       /* 深棕文字 */
+            --text-mid: #5C5446;        /* 中灰文字 */
+            --text-light: #8A8276;      /* 浅灰文字 */
+            --white: #FFFFFF;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-hover: 0 8px 40px rgba(0,0,0,0.12);
+            --border-radius: 12px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --max-width: 1200px;
+            --nav-height: 64px;
+        }
+
+        /* ===== 全局重置 ===== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; scroll-padding-top: var(--nav-height); }
+        body {
+            font-family: 'Noto Sans SC', 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            font-weight: 300;
+            color: var(--text-dark);
+            background: var(--bg-warm);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4 { font-family: 'Noto Serif SC', 'SimSun', 'STSong', serif; font-weight: 700; }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* ===== 导航栏 ===== */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            height: var(--nav-height);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 40px;
+            transition: var(--transition);
+        }
+        .navbar.scrolled { box-shadow: var(--shadow); }
+        .nav-logo {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.2rem; font-weight: 700;
+            color: var(--red-deep);
+            letter-spacing: 2px;
+        }
+        .nav-logo i { color: var(--green-deep); margin-right: 6px; }
+        .nav-links { display: flex; gap: 28px; list-style: none; }
+        .nav-links a {
+            font-size: 0.9rem; font-weight: 400; color: var(--text-mid);
+            padding: 6px 0; border-bottom: 2px solid transparent;
+            transition: var(--transition); letter-spacing: 1px;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--red-deep); border-bottom-color: var(--gold); }
+        .nav-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--text-dark); }
+
+        /* ===== 英雄区 ===== */
+        .hero {
+            min-height: 90vh; display: flex; align-items: center; justify-content: center;
+            position: relative; text-align: center; padding: 80px 20px 60px;
+            background: linear-gradient(160deg, #F8F6F0 0%, #EDF4EC 25%, #F0F4F8 50%, #FBF5F5 75%, #F8F6F0 100%);
+            overflow: hidden;
+        }
+        /* 科技感网格背景 */
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(139,45,59,0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(26,92,58,0.06) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 70%);
+        }
+        /* 浮动光斑 */
+        .hero::after {
+            content: ''; position: absolute; inset: 0; pointer-events: none;
+            background:
+                radial-gradient(circle at 25% 35%, rgba(191,154,74,0.18) 0%, transparent 40%),
+                radial-gradient(circle at 75% 60%, rgba(26,92,58,0.12) 0%, transparent 40%),
+                radial-gradient(circle at 50% 20%, rgba(139,45,59,0.08) 0%, transparent 35%);
+            animation: heroFloat 10s ease-in-out infinite;
+        }
+        @keyframes heroFloat {
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 800px; }
+        .hero-badge {
+            display: inline-block; padding: 8px 24px;
+            background: rgba(255,255,255,0.7); border: 1px solid rgba(139,45,59,0.2);
+            border-radius: 50px; color: var(--red-deep); font-size: 0.9rem;
+            letter-spacing: 4px; margin-bottom: 30px; backdrop-filter: blur(10px);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+        .hero h1 {
+            font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 900;
+            color: var(--text-dark); line-height: 1.3; letter-spacing: 6px;
+            margin-bottom: 16px;
+        }
+        .hero h1 .hl-red { color: var(--red-deep); }
+        .hero h1 .hl-green { color: var(--green-deep); }
+        .hero h1 .hl-gold { color: #8B6914; }
+        .hero .subtitle {
+            font-size: clamp(1rem, 2vw, 1.3rem); color: var(--text-mid);
+            letter-spacing: 3px; margin-bottom: 40px; font-weight: 400;
+        }
+        .hero-scroll {
+            position: absolute; bottom: 30px; z-index: 2;
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            color: var(--text-light); font-size: 0.85rem; letter-spacing: 2px;
+            animation: bounce 2s infinite;
+        }
+        .hero-scroll i { font-size: 1.2rem; }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        /* ===== 通用板块样式 ===== */
+        .section {
+            padding: 60px 20px; max-width: var(--max-width);
+            margin: 0 auto;
+        }
+        .section-header {
+            text-align: center; margin-bottom: 40px;
+        }
+        .section-tag {
+            display: inline-block; padding: 6px 18px;
+            background: var(--bg-green-pale); color: var(--green-deep);
+            border-radius: 50px; font-size: 0.85rem;
+            letter-spacing: 3px; margin-bottom: 16px;
+        }
+        .section-tag.red { background: var(--bg-red-pale); color: var(--red-deep); }
+        .section-header h2 {
+            font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--text-dark);
+            letter-spacing: 3px; margin-bottom: 12px;
+        }
+        .section-header .divider {
+            width: 50px; height: 3px; background: var(--gold);
+            margin: 0 auto; border-radius: 2px;
+        }
+        .section-header p {
+            color: var(--text-mid); margin-top: 16px; max-width: 600px; margin-left: auto; margin-right: auto;
+        }
+
+        /* ===== 方案概述卡片 ===== */
+        .overview-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+        }
+        .overview-card {
+            background: var(--white); border-radius: var(--border-radius);
+            padding: 40px 30px; box-shadow: var(--shadow);
+            transition: var(--transition); position: relative; overflow: hidden;
+            border-top: 3px solid transparent;
+        }
+        .overview-card:hover {
+            transform: translateY(-6px); box-shadow: var(--shadow-hover);
+        }
+        .overview-card.card-red:hover { border-top-color: var(--red-deep); }
+        .overview-card.card-green:hover { border-top-color: var(--green-deep); }
+        .overview-card.card-gold:hover { border-top-color: var(--gold); }
+        .overview-card .card-icon {
+            width: 56px; height: 56px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; margin-bottom: 20px;
+        }
+        .overview-card.card-red .card-icon { background: var(--bg-red-pale); color: var(--red-deep); }
+        .overview-card.card-green .card-icon { background: var(--bg-green-pale); color: var(--green-deep); }
+        .overview-card.card-gold .card-icon { background: #FDF8EE; color: var(--gold); }
+        .overview-card h3 { font-size: 1.2rem; margin-bottom: 10px; letter-spacing: 1px; }
+        .overview-card p { color: var(--text-mid); font-size: 0.93rem; line-height: 1.8; }
+
+        /* ===== 摘要区 ===== */
+        .abstract-box {
+            background: var(--white); border-radius: var(--border-radius);
+            padding: 36px; box-shadow: var(--shadow);
+            border-left: 4px solid var(--gold); margin-bottom: 36px;
+        }
+        .abstract-box p { color: var(--text-mid); line-height: 2; font-size: 1.02rem; }
+
+        /* ===== 时间轴 / 路线 ===== */
+        .timeline {
+            position: relative; padding: 20px 0;
+        }
+        /* 中间线 */
+        .timeline::before {
+            content: ''; position: absolute; left: 50%; top: 0; bottom: 0;
+            width: 3px; background: linear-gradient(to bottom, var(--red-deep), var(--green-deep), var(--gold));
+            border-radius: 2px; transform: translateX(-50%);
+        }
+        .timeline-item {
+            display: flex; align-items: flex-start; margin-bottom: 36px;
+            position: relative;
+        }
+        .timeline-item:nth-child(odd) { flex-direction: row; }
+        .timeline-item:nth-child(even) { flex-direction: row-reverse; }
+        .timeline-dot {
+            position: absolute; left: 50%; top: 0;
+            width: 40px; height: 40px; border-radius: 50%;
+            background: var(--white); border: 3px solid var(--green-deep);
+            transform: translateX(-50%);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 2; font-size: 0.8rem; font-weight: 700;
+            color: var(--green-deep);
+        }
+        .timeline-item:nth-child(1) .timeline-dot { border-color: var(--red-deep); color: var(--red-deep); }
+        .timeline-item:nth-child(3) .timeline-dot { border-color: var(--gold); color: var(--gold); }
+        .timeline-content {
+            width: 42%; background: var(--white); border-radius: var(--border-radius);
+            padding: 30px; box-shadow: var(--shadow);
+        }
+        .timeline-content h3 {
+            font-size: 1.3rem; margin-bottom: 6px; letter-spacing: 1px;
+        }
+        .timeline-content .day-badge {
+            display: inline-block; padding: 3px 12px; border-radius: 50px;
+            font-size: 0.8rem; font-weight: 500; letter-spacing: 2px; margin-bottom: 12px;
+        }
+        .day-badge.day1 { background: var(--bg-red-pale); color: var(--red-deep); }
+        .day-badge.day2 { background: var(--bg-green-pale); color: var(--green-deep); }
+        .day-badge.day3 { background: #FDF8EE; color: #8B6914; }
+        .timeline-content .sites {
+            margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px;
+        }
+        .timeline-content .site-tag {
+            padding: 4px 12px; background: var(--bg-cream);
+            border-radius: 6px; font-size: 0.82rem; color: var(--text-mid);
+        }
+
+        /* ===== Day 详情区 ===== */
+        .day-detail {
+            background: var(--white); border-radius: var(--border-radius);
+            margin-bottom: 30px; overflow: hidden; box-shadow: var(--shadow);
+        }
+        .day-detail-header {
+            padding: 32px 32px 16px; display: flex; align-items: center; gap: 24px;
+        }
+        .day-num {
+            width: 84px; height: 84px; min-width: 84px; border-radius: 50%;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            font-family: 'Noto Serif SC', serif; font-weight: 900; flex-shrink: 0;
+            line-height: 1.1;
+        }
+        .day-num .day-label { font-size: 0.65rem; letter-spacing: 2px; opacity: 0.9; }
+        .day-num .day-digit { font-size: 1.6rem; }
+        .day-num.day1-bg { background: linear-gradient(135deg, #8B2D3B, #B84556); color: #fff; }
+        .day-num.day2-bg { background: linear-gradient(135deg, #1A5C3A, #2D8B4E); color: #fff; }
+        .day-num.day3-bg { background: linear-gradient(135deg, #BF9A4A, #D4B86A); color: #fff; }
+        .day-detail-header h3 { font-size: 1.35rem; letter-spacing: 1px; }
+        .day-detail-header .day-subtitle { color: var(--text-light); font-size: 0.88rem; margin-top: 4px; }
+        .day-detail-body { padding: 0 32px 32px; }
+        .day-detail-body h4 {
+            color: var(--green-deep); font-size: 1rem; margin: 16px 0 8px;
+            padding-left: 12px; border-left: 3px solid var(--green-deep);
+        }
+        .day-detail-body h4.red-accent { color: var(--red-deep); border-left-color: var(--red-deep); }
+        .day-detail-body p { color: var(--text-mid); margin-bottom: 8px; }
+        .day-photos {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+            margin-top: 16px;
+        }
+        .day-photos img {
+            border-radius: 8px; height: 180px; object-fit: cover; width: 100%;
+            cursor: pointer; transition: var(--transition);
+        }
+        .day-photos img:hover { transform: scale(1.03); }
+
+        /* ===== 目标区 ===== */
+        .goals-grid {
+            display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px;
+        }
+        .goal-card {
+            background: var(--white); border-radius: var(--border-radius);
+            padding: 30px 20px; text-align: center; box-shadow: var(--shadow);
+            transition: var(--transition); position: relative; overflow: hidden;
+        }
+        .goal-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+        .goal-card .goal-icon {
+            width: 60px; height: 60px; border-radius: 50%; margin: 0 auto 16px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+        }
+        .goal-card:nth-child(1) .goal-icon { background: #FFF0F0; color: #D44; }
+        .goal-card:nth-child(2) .goal-icon { background: #F0F4FF; color: #48D; }
+        .goal-card:nth-child(3) .goal-icon { background: #F0FFF4; color: #2A8; }
+        .goal-card:nth-child(4) .goal-icon { background: #FFF8F0; color: #D84; }
+        .goal-card:nth-child(5) .goal-icon { background: #FFF0F8; color: #D4A; }
+        .goal-card h4 { font-size: 1rem; margin-bottom: 10px; letter-spacing: 1px; }
+        .goal-card ul { list-style: none; text-align: left; font-size: 0.85rem; color: var(--text-mid); }
+        .goal-card ul li { padding: 4px 0; }
+        .goal-card ul li::before { content: '• '; color: var(--gold); }
+
+        /* ===== 图集区（便当盒布局） ===== */
+        .gallery-bento {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: 180px 180px 180px;
+            gap: 12px;
+        }
+        .gallery-bento .bento-item {
+            border-radius: 12px; overflow: hidden;
+            cursor: pointer; position: relative;
+            transition: var(--transition);
+        }
+        .gallery-bento .bento-item:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-hover);
+            z-index: 2;
+        }
+        .gallery-bento .bento-item img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .gallery-bento .bento-item:hover img { transform: scale(1.08); }
+        /* 便当盒排列 */
+        .gallery-bento .bento-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 3; }
+        .gallery-bento .bento-item:nth-child(2) { grid-column: 3 / 4; grid-row: 1 / 2; }
+        .gallery-bento .bento-item:nth-child(3) { grid-column: 4 / 5; grid-row: 1 / 2; }
+        .gallery-bento .bento-item:nth-child(4) { grid-column: 3 / 5; grid-row: 2 / 3; }
+        .gallery-bento .bento-item:nth-child(5) { grid-column: 1 / 2; grid-row: 3 / 4; }
+        .gallery-bento .bento-item:nth-child(6) { grid-column: 2 / 3; grid-row: 3 / 4; }
+        .gallery-bento .bento-item:nth-child(7) { grid-column: 3 / 4; grid-row: 3 / 4; }
+        .gallery-bento .bento-item:nth-child(8) { grid-column: 4 / 5; grid-row: 3 / 4; }
+
+        /* ===== 图片灯箱 ===== */
+        .lightbox {
+            position: fixed; inset: 0; z-index: 9999;
+            background: rgba(0,0,0,0.92);
+            display: none; align-items: center; justify-content: center;
+            cursor: pointer;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 90vw; max-height: 85vh; border-radius: 8px; }
+        .lightbox-close {
+            position: absolute; top: 20px; right: 30px;
+            font-size: 2rem; color: #fff; cursor: pointer; z-index: 1;
+        }
+        .lightbox-prev, .lightbox-next {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            font-size: 2rem; color: #fff; cursor: pointer; padding: 20px;
+            user-select: none;
+        }
+        .lightbox-prev { left: 10px; }
+        .lightbox-next { right: 10px; }
+
+        /* ===== 特色活动区 ===== */
+        .activities-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+        }
+        .activity-card {
+            background: var(--white); border-radius: var(--border-radius);
+            padding: 32px; box-shadow: var(--shadow);
+            display: flex; gap: 20px; align-items: flex-start;
+            transition: var(--transition);
+        }
+        .activity-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+        .activity-icon {
+            width: 56px; height: 56px; min-width: 56px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+        }
+        .activity-card:nth-child(1) .activity-icon { background: var(--bg-red-pale); color: var(--red-deep); }
+        .activity-card:nth-child(2) .activity-icon { background: var(--bg-green-pale); color: var(--green-deep); }
+        .activity-card h4 { font-size: 1.1rem; margin-bottom: 6px; letter-spacing: 1px; }
+        .activity-card p { color: var(--text-mid); font-size: 0.9rem; line-height: 1.7; }
+
+        /* ===== 课程评价区 ===== */
+        .eval-framework {
+            background: var(--white); border-radius: var(--border-radius);
+            padding: 32px; box-shadow: var(--shadow);
+        }
+        .eval-five-grid {
+            display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px;
+            margin-bottom: 24px;
+        }
+        .eval-item {
+            text-align: center; padding: 20px 12px; border-radius: 10px;
+            transition: var(--transition);
+        }
+        .eval-item:hover { transform: translateY(-3px); }
+        .eval-item:nth-child(1) { background: linear-gradient(180deg, #FFF5F5 0%, #fff 100%); border-top: 3px solid #C44; }
+        .eval-item:nth-child(2) { background: linear-gradient(180deg, #F0FFF4 0%, #fff 100%); border-top: 3px solid #2A8; }
+        .eval-item:nth-child(3) { background: linear-gradient(180deg, #F0F5FF 0%, #fff 100%); border-top: 3px solid #48D; }
+        .eval-item:nth-child(4) { background: linear-gradient(180deg, #FFF8F0 0%, #fff 100%); border-top: 3px solid #D84; }
+        .eval-item:nth-child(5) { background: linear-gradient(180deg, #FFF5FC 0%, #fff 100%); border-top: 3px solid #C4A; }
+        .eval-item .eval-badge {
+            font-family: 'Noto Serif SC', serif; font-size: 1.2rem; font-weight: 700;
+            margin-bottom: 6px; letter-spacing: 1px;
+        }
+        .eval-item:nth-child(1) .eval-badge { color: #C44; }
+        .eval-item:nth-child(2) .eval-badge { color: #2A8; }
+        .eval-item:nth-child(3) .eval-badge { color: #48D; }
+        .eval-item:nth-child(4) .eval-badge { color: #D84; }
+        .eval-item:nth-child(5) .eval-badge { color: #C4A; }
+        .eval-item .eval-label { font-size: 0.82rem; color: var(--text-mid); margin-bottom: 8px; }
+        .eval-item .eval-score { font-size: 0.85rem; color: var(--text-light); }
+        .eval-meta {
+            display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;
+            padding: 16px; background: var(--bg-cream); border-radius: 8px;
+            font-size: 0.88rem; color: var(--text-mid);
+        }
+        .eval-meta span strong { color: var(--green-deep); }
+        .eval-levels {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 20px;
+        }
+        .level-card {
+            padding: 16px; border-radius: 8px; text-align: center;
+            font-size: 0.85rem; background: var(--bg-cream);
+        }
+        .level-card:nth-child(1) { border-left: 3px solid #C44; }
+        .level-card:nth-child(2) { border-left: 3px solid #48D; }
+        .level-card:nth-child(3) { border-left: 3px solid #D84; }
+        .level-card:nth-child(4) { border-left: 3px solid #999; }
+        .level-card strong { display: block; margin-bottom: 4px; }
+
+        /* ===== 安全保障区 ===== */
+        .safety-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+        }
+        .safety-card {
+            background: var(--white); border-radius: var(--border-radius);
+            padding: 28px; box-shadow: var(--shadow); text-align: center;
+            transition: var(--transition);
+        }
+        .safety-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+        .safety-card .safety-icon {
+            width: 50px; height: 50px; border-radius: 50%; margin: 0 auto 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; background: var(--bg-green-pale); color: var(--green-deep);
+        }
+        .safety-card h4 { font-size: 1rem; margin-bottom: 8px; letter-spacing: 1px; }
+        .safety-card p { color: var(--text-mid); font-size: 0.85rem; line-height: 1.7; }
+        .safety-emergency {
+            background: var(--white); border-radius: var(--border-radius);
+            padding: 28px; box-shadow: var(--shadow); margin-top: 20px;
+            border-left: 4px solid var(--red-deep);
+        }
+        .safety-emergency h4 { color: var(--red-deep); margin-bottom: 14px; letter-spacing: 1px; }
+        .safety-emergency .emergency-rows { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+        .emergency-level { padding: 16px 18px; border-radius: 8px; background: var(--bg-cream); }
+        .emergency-level h5 { font-size: 0.95rem; margin-bottom: 6px; }
+        .emergency-level h5.l1 { color: #B83830; }
+        .emergency-level h5.l2 { color: #B87830; }
+        .emergency-level h5.l3 { color: #3878B8; }
+        .emergency-level p { font-size: 0.84rem; color: var(--text-mid); line-height: 1.7; }
+
+        /* ===== 报名表单区 ===== */
+        .signup-wrapper {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+            align-items: start;
+        }
+        .signup-info {
+            background: linear-gradient(160deg, var(--green-deep), #0E3D24);
+            border-radius: var(--border-radius); padding: 36px;
+            color: rgba(255,255,255,0.9);
+        }
+        .signup-info h3 {
+            font-size: 1.3rem; color: #fff; margin-bottom: 16px;
+            letter-spacing: 2px;
+        }
+        .signup-info .highlight-list { list-style: none; }
+        .signup-info .highlight-list li {
+            padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex; align-items: center; gap: 12px; font-size: 0.93rem;
+        }
+        .signup-info .highlight-list li i { color: var(--gold-light); width: 20px; text-align: center; }
+        .signup-form-card {
+            background: var(--white); border-radius: var(--border-radius);
+            padding: 36px; box-shadow: var(--shadow);
+        }
+        .signup-form-card .form-row {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+            margin-bottom: 16px;
+        }
+        .signup-form-card .form-row.single { grid-template-columns: 1fr; }
+        .signup-form-card .form-group { display: flex; flex-direction: column; gap: 5px; }
+        .signup-form-card label {
+            font-size: 0.85rem; font-weight: 500; color: var(--text-dark);
+            letter-spacing: 0.5px;
+        }
+        .signup-form-card label .required { color: var(--red-deep); margin-left: 2px; }
+        .signup-form-card input,
+        .signup-form-card select,
+        .signup-form-card textarea {
+            padding: 10px 14px; border: 1.5px solid #E5E0D8;
+            border-radius: 8px; font-size: 0.93rem; font-family: inherit;
+            color: var(--text-dark); background: #FAFAF7;
+            transition: var(--transition); outline: none;
+        }
+        .signup-form-card input:focus,
+        .signup-form-card select:focus,
+        .signup-form-card textarea:focus {
+            border-color: var(--green-mid); box-shadow: 0 0 0 3px rgba(26,92,58,0.08);
+            background: #fff;
+        }
+        .signup-form-card textarea { resize: vertical; min-height: 80px; }
+        .signup-form-card .checkbox-group {
+            display: flex; flex-wrap: wrap; gap: 12px;
+        }
+        .signup-form-card .checkbox-group label {
+            display: flex; align-items: center; gap: 6px; font-weight: 400;
+            cursor: pointer; padding: 6px 14px; border-radius: 50px;
+            border: 1.5px solid #E5E0D8; transition: var(--transition);
+            font-size: 0.85rem;
+        }
+        .signup-form-card .checkbox-group label:hover { border-color: var(--green-mid); }
+        .signup-form-card .checkbox-group input[type="checkbox"] { accent-color: var(--green-deep); }
+        .btn-submit {
+            width: 100%; padding: 14px; border: none; border-radius: 10px;
+            background: linear-gradient(135deg, var(--green-deep), var(--green-mid));
+            color: #fff; font-size: 1.05rem; font-weight: 600;
+            letter-spacing: 3px; cursor: pointer;
+            transition: var(--transition); margin-top: 10px;
+            font-family: 'Noto Serif SC', serif;
+        }
+        .btn-submit:hover { background: linear-gradient(135deg, #155030, #23773D); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(26,92,58,0.3); }
+        .btn-submit:active { transform: translateY(0); }
+        .form-success {
+            display: none; text-align: center; padding: 40px 20px;
+        }
+        .form-success.show { display: block; }
+        .form-success .success-icon {
+            width: 72px; height: 72px; border-radius: 50%;
+            background: var(--bg-green-pale); color: var(--green-deep);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; margin: 0 auto 16px;
+        }
+        .form-success h3 { color: var(--green-deep); margin-bottom: 8px; letter-spacing: 1px; }
+        .form-success p { color: var(--text-mid); font-size: 0.93rem; }
+        .form-error { color: #D44; font-size: 0.8rem; display: none; }
+        .form-error.show { display: block; }
+
+        /* ===== 页脚 ===== */
+        .footer {
+            background: linear-gradient(135deg, #1a1a1a, #2C2416);
+            color: rgba(255,255,255,0.7); padding: 50px 20px 30px; text-align: center;
+        }
+        .footer .footer-title {
+            font-family: 'Noto Serif SC', serif; font-size: 1.3rem; color: var(--gold-light);
+            letter-spacing: 3px; margin-bottom: 8px;
+        }
+        .footer p { font-size: 0.85rem; }
+
+        /* ===== 滚动动画 ===== */
+        .fade-in {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* ===== 响应式设计 ===== */
+        @media (max-width: 1024px) {
+            .signup-wrapper { grid-template-columns: 1fr; }
+            .overview-grid { grid-template-columns: 1fr 1fr; }
+            .goals-grid { grid-template-columns: repeat(3, 1fr); }
+            .eval-five-grid { grid-template-columns: repeat(3, 1fr); }
+            .eval-levels { grid-template-columns: repeat(2, 1fr); }
+            .safety-grid { grid-template-columns: repeat(2, 1fr); }
+            .safety-emergency .emergency-rows { grid-template-columns: 1fr; }
+            .activities-grid { grid-template-columns: 1fr; }
+            .gallery-bento {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: 200px 200px 180px 180px;
+            }
+            .gallery-bento .bento-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 2; }
+            .gallery-bento .bento-item:nth-child(2) { grid-column: 1 / 2; grid-row: 2 / 3; }
+            .gallery-bento .bento-item:nth-child(3) { grid-column: 2 / 3; grid-row: 2 / 3; }
+            .gallery-bento .bento-item:nth-child(4) { grid-column: 1 / 3; grid-row: 3 / 4; }
+            .gallery-bento .bento-item:nth-child(5) { grid-column: 1 / 2; grid-row: 4 / 5; }
+            .gallery-bento .bento-item:nth-child(6) { grid-column: 2 / 3; grid-row: 4 / 5; }
+            .gallery-bento .bento-item:nth-child(7) { grid-column: 1 / 2; grid-row: 5 / 6; }
+            .gallery-bento .bento-item:nth-child(8) { grid-column: 2 / 3; grid-row: 5 / 6; }
+            .day-photos { grid-template-columns: repeat(2, 1fr); }
+            .timeline::before { left: 20px; }
+            .timeline-dot { left: 20px; width: 30px; height: 30px; font-size: 0.7rem; }
+            .timeline-item, .timeline-item:nth-child(even) { flex-direction: column; }
+            .timeline-content { width: calc(100% - 50px); margin-left: 50px; }
+        }
+        @media (max-width: 768px) {
+            .navbar { padding: 0 20px; }
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex; flex-direction: column; position: absolute;
+                top: var(--nav-height); left: 0; right: 0;
+                background: rgba(255,255,255,0.98); padding: 20px;
+                gap: 16px; border-bottom: 1px solid rgba(0,0,0,0.06);
+            }
+            .nav-toggle { display: block; }
+            .overview-grid { grid-template-columns: 1fr; }
+            .goals-grid { grid-template-columns: 1fr 1fr; }
+            .gallery-bento {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto;
+                gap: 8px;
+            }
+            .gallery-bento .bento-item:nth-child(1) { grid-column: 1 / 3; grid-row: auto; aspect-ratio: 16/9; }
+            .gallery-bento .bento-item:nth-child(2) { grid-column: 1 / 2; grid-row: auto; aspect-ratio: 1/1; }
+            .gallery-bento .bento-item:nth-child(3) { grid-column: 2 / 3; grid-row: auto; aspect-ratio: 1/1; }
+            .gallery-bento .bento-item:nth-child(4) { grid-column: 1 / 3; grid-row: auto; aspect-ratio: 16/9; }
+            .gallery-bento .bento-item:nth-child(5) { grid-column: 1 / 2; grid-row: auto; aspect-ratio: 1/1; }
+            .gallery-bento .bento-item:nth-child(6) { grid-column: 2 / 3; grid-row: auto; aspect-ratio: 1/1; }
+            .gallery-bento .bento-item:nth-child(7) { grid-column: 1 / 2; grid-row: auto; aspect-ratio: 1/1; }
+            .gallery-bento .bento-item:nth-child(8) { grid-column: 2 / 3; grid-row: auto; aspect-ratio: 1/1; }
+            .day-photos { grid-template-columns: 1fr; }
+            .section { padding: 40px 16px; }
+            .signup-form-card .form-row { grid-template-columns: 1fr; }
+            .signup-info { padding: 24px; }
+            .eval-five-grid { grid-template-columns: repeat(2, 1fr); }
+            .eval-levels { grid-template-columns: 1fr; }
+            .safety-grid { grid-template-columns: 1fr; }
+            .eval-meta { flex-direction: column; gap: 8px; text-align: center; }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.8rem; letter-spacing: 3px; }
+            .goals-grid { grid-template-columns: 1fr; }
+            .gallery-bento { grid-template-columns: 1fr; gap: 8px; }
+            .gallery-bento .bento-item { grid-column: 1 / 2 !important; grid-row: auto !important; aspect-ratio: 4/3; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== ① 导航栏 ==================== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-logo">
+            <i class="fa-solid fa-mountain-sun"></i>红脉护绿源
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#overview" data-section="overview">方案概述</a></li>
+            <li><a href="#route" data-section="route">研学路线</a></li>
+            <li><a href="#days" data-section="days">课程详情</a></li>
+            <li><a href="#goals" data-section="goals">课程目标</a></li>
+            <li><a href="#evaluation" data-section="evaluation">评价体系</a></li>
+            <li><a href="#safety" data-section="safety">安全保障</a></li>
+            <li><a href="#gallery" data-section="gallery">研学风采</a></li>
+            <li><a href="#signup" data-section="signup">研学报名</a></li>
+        </ul>
+        <div class="nav-toggle" id="navToggle"><i class="fa-solid fa-bars"></i></div>
+    </nav>
+
+    <!-- ==================== ② 英雄区 ==================== -->
+    <section class="hero" id="home">
+        <div class="hero-content fade-in">
+            <div class="hero-badge">开化 · 钱江源</div>
+            <h1><span class="hl-red">红脉</span>护<span class="hl-green">绿源</span><br><span class="hl-gold">地理践初心</span></h1>
+            <p class="subtitle">开化"大思政"视域下地理研学实践方案</p>
+        </div>
+        <div class="hero-scroll">
+            <span>向下探索</span>
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- ==================== ③ 方案概述 ==================== -->
+    <section class="section" id="overview">
+        <div class="section-header fade-in">
+            <span class="section-tag">OVERVIEW</span>
+            <h2>方案概述</h2>
+            <div class="divider"></div>
+        </div>
+        <!-- 摘要 -->
+        <div class="abstract-box fade-in">
+            <p>本方案以<strong>"红脉护绿源·地理践初心"</strong>为主题，依托浙江开化钱江源地区<strong style="color:#8B2D3B;">"红色根脉"</strong>与<strong style="color:#1A5C3A;">"绿色生态"</strong>双重资源优势，面向高二选考地理学生设计<strong>3天2夜</strong>地理研学课程。课程以<strong>"大思政课"</strong>为价值引领，以<strong>UbD逆向设计</strong>和<strong>PBL项目化学习</strong>为方法支撑，围绕"一片红色热土，如何走出一条绿色共富之路？"这一核心问题，构建<strong>"山魂·护源、星火·译码、点绿·问道"</strong>三大递进式模块，串联福岭山革命旧址、钱江源国家森林公园、库坑红色古村、高田坑暗夜星空保护地、下淤村和金星村六个研学点。</p>
+            <p style="margin-top:12px;">课程将山地地形分析、水文生态观测、聚落选址探究、暗夜资源测评、乡村产业调研等地理实践活动，与革命传统教育、生态文明教育和<strong>共同富裕教育</strong>有机融合。学生将在真实区域情境中完成《红色地理密码破译卡》《钱江源生态观测记录表》《暗夜资源测评表》《两村转型特征对比表》和《"两山"转化案例调研报告》等成果，逐步形成从<strong>"革命守土"到"生态护源"再到"绿色共富"</strong>的人地关系认知。</p>
+        </div>
+        <!-- 三大理念卡片 -->
+        <div class="overview-grid fade-in">
+            <div class="overview-card card-red">
+                <div class="card-icon"><i class="fa-solid fa-flag"></i></div>
+                <h3>"大思政课"引领</h3>
+                <p>开化既是浙皖赣边区革命活动的重要区域，也是钱江源头生态保护和"两山"实践的重要场域。本方案将思政教育嵌入红色遗址探访、山地地形判读、溪流水文观测、乡村产业访谈等真实任务之中，引导学生在"看得见的山水、摸得到的数据、问得出的故事"中理解红色基因、生态文明与共同富裕的内在联系。</p>
+            </div>
+            <div class="overview-card card-green">
+                <div class="card-icon"><i class="fa-solid fa-layer-group"></i></div>
+                <h3>UbD 逆向设计</h3>
+                <p>以"区域发展是自然环境、历史基础、产业选择、治理机制和价值理念共同作用的过程"为核心理解，以终为始规划评价与活动。以项目成果为评价证据，三天活动由"红色选址—生态守护—绿色共富"逐步推进，确保每一项活动服务于深度理解。</p>
+            </div>
+            <div class="overview-card card-gold">
+                <div class="card-icon"><i class="fa-solid fa-compass"></i></div>
+                <h3>PBL 项目驱动</h3>
+                <p>学生以"区域地理调查员"和"乡村发展建议者"身份，完成总任务：为开化"红色根脉与绿色共富融合发展"提出地理证据充分、路径建议清晰的研学报告。三个子问题对应三天模块，学生在观察、测量、访谈、制图、比较和汇报中"做中学、研中悟"。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ④ 研学路线总览 ==================== -->
+    <section class="section" id="route">
+        <div class="section-header fade-in">
+            <span class="section-tag red">ROUTE</span>
+            <h2>研学路线总览</h2>
+            <div class="divider"></div>
+            <p>浙江省衢州市开化县 · 3天2夜 · 6大研学点</p>
+        </div>
+        <div class="timeline fade-in">
+            <!-- Day 1 -->
+            <div class="timeline-item">
+                <div class="timeline-dot">1</div>
+                <div class="timeline-content">
+                    <span class="day-badge day1">DAY 1</span>
+                    <h3>山魂 · 护源</h3>
+                    <p>红色根脉与生态源地的地理对话</p>
+                    <div class="sites">
+                        <span class="site-tag">🏔 福岭山浙西革命旧址群</span>
+                        <span class="site-tag">🌊 钱江源国家森林公园</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 2 -->
+            <div class="timeline-item">
+                <div class="timeline-dot">2</div>
+                <div class="timeline-content">
+                    <span class="day-badge day2">DAY 2</span>
+                    <h3>星火 · 译码</h3>
+                    <p>从红色密信到暗夜星空的探索之旅</p>
+                    <div class="sites">
+                        <span class="site-tag">🏘 库坑红色古村</span>
+                        <span class="site-tag">✨ 高田坑暗夜星空保护地</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Day 3 -->
+            <div class="timeline-item">
+                <div class="timeline-dot">3</div>
+                <div class="timeline-content">
+                    <span class="day-badge day3">DAY 3</span>
+                    <h3>点绿 · 问道</h3>
+                    <p>两山转化的乡村地理实证</p>
+                    <div class="sites">
+                        <span class="site-tag">🌿 下淤村</span>
+                        <span class="site-tag">🏡 金星村</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ⑤ 三大模块详细展示 ==================== -->
+    <section class="section" id="days">
+        <div class="section-header fade-in">
+            <span class="section-tag">COURSE</span>
+            <h2>课程详细安排</h2>
+            <div class="divider"></div>
+        </div>
+
+        <!-- ===== DAY 1 ===== -->
+        <div class="day-detail fade-in">
+            <div class="day-detail-header">
+                <div class="day-num day1-bg"><span class="day-label">DAY</span><span class="day-digit">1</span></div>
+                <div>
+                    <h3>山魂·护源 —— 红色根脉与生态源地的地理对话</h3>
+                    <p class="day-subtitle">福岭山浙西革命旧址群 → 钱江源国家森林公园 → 晚间会议室</p>
+                </div>
+            </div>
+            <div class="day-detail-body">
+                <h4 class="red-accent">核心问题：山地地理环境如何支撑革命使命并延续为生态守护？</h4>
+                <p>上午在福岭山浙西革命旧址群，学生通过<strong>"烽火踏勘→纸上点兵→山川为证→众志论道"</strong>四个环节，结合地形图与沙盘推演，实地对照山脊线和溪谷，分析山地地形、植被、水文条件对游击根据地建设的支撑作用。下午在钱江源国家森林公园，通过<strong>"初心之问→源头探微→清源论道"</strong>三个环节，开展水质检测与植被覆盖率样方统计，探究源头生态涵养功能，建立<strong>"革命守土→生态护源"</strong>的人地关联认知。晚间在住宿点会议室整合一日成果，观看《方志敏·血战东南》等红色影像。</p>
+                <div class="day-photos">
+                    <img src="images/fulingshan/福岭山 (1).jpg" alt="福岭山革命旧址" loading="lazy" onclick="openLightbox(this.src)">
+                    <img src="images/qianjiangyuan/钱江源森林公园 (1).jpg" alt="钱江源国家森林公园" loading="lazy" onclick="openLightbox(this.src)">
+                    <img src="images/fulingshan/福岭山 (5).jpg" alt="福岭山山地考察" loading="lazy" onclick="openLightbox(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== DAY 2 ===== -->
+        <div class="day-detail fade-in">
+            <div class="day-detail-header">
+                <div class="day-num day2-bg"><span class="day-label">DAY</span><span class="day-digit">2</span></div>
+                <div>
+                    <h3>星火·译码 —— 从红色密信到暗夜星空的探索之旅</h3>
+                    <p class="day-subtitle">库坑红色古村 → 高田坑古村落 & 暗夜星空保护地</p>
+                </div>
+            </div>
+            <div class="day-detail-body">
+                <h4 class="red-accent">核心问题：红色选址智慧与暗夜资源保护之间有何地理联系？</h4>
+                <p>上午在库坑红色古村，学生领取<strong>"红军密信"任务卡</strong>，通过"历史余韵→密信追踪→围炉解密"三个环节，使用指南针和地形图在古村内实地破译密信点位，理解革命年代<strong>"靠山、近水、隐蔽"</strong>的聚落选址智慧。下午在高田坑暗夜星空保护地，通过"穹顶之下→追光者说→星野拾萃→银河为证"四个环节，在天文馆学习星空知识，用测光APP采集光环境数据，实地调研<strong>暗夜经济</strong>如何带动乡村振兴。晚间在观星台辨认北斗七星、北极星与夏季大三角，感悟从"观星辨向"到"暗夜守护"的初心传承。</p>
+                <div class="day-photos">
+                    <img src="images/fulingshan/福岭山 (10).jpg" alt="库坑红色古村" loading="lazy" onclick="openLightbox(this.src)">
+                    <img src="images/fulingshan/福岭山 (15).jpg" alt="高田坑古村落" loading="lazy" onclick="openLightbox(this.src)">
+                    <img src="images/qianjiangyuan/钱江源森林公园 (10).jpg" alt="暗夜星空观测" loading="lazy" onclick="openLightbox(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== DAY 3 ===== -->
+        <div class="day-detail fade-in">
+            <div class="day-detail-header">
+                <div class="day-num day3-bg"><span class="day-label">DAY</span><span class="day-digit">3</span></div>
+                <div>
+                    <h3>点绿·问道 —— 两山转化的乡村地理实证</h3>
+                    <p class="day-subtitle">下淤村 "生态修复+文旅转型" → 金星村 "党建+产业"融合发展</p>
+                </div>
+            </div>
+            <div class="day-detail-body">
+                <h4>核心问题：下淤村与金星村的"两山"转化为何路径不同？</h4>
+                <p>上午在下淤村，通过<strong>"山河之问→田野取证→证据交锋"</strong>三个环节，登上观景台俯瞰"山、水、林、田、湖、村"空间格局，沿马金溪生态护岸徒步观察<strong>"五水共治"与滨水生态修复</strong>成果，走访精品民宿和农家乐，访谈经营户了解从<strong>"卖石头到卖风景"</strong>的转型历程。下午在金星村，通过<strong>"大山之下→圆桌问路"</strong>两个环节，参观"两山"展示馆，探访千年银杏树公园、茶园和民宿集群，考察<strong>"茶叶+旅游+康养"产业链模式</strong>。傍晚开展圆桌会议，利用AI生成SWOT分析框架，完成《两村转型特征对比表》和调研报告，各小组5分钟汇报，教师提炼<strong>"123"开化经验</strong>：一个理念引领、两条路径并进、三方力量协同。</p>
+                <div class="day-photos">
+                    <img src="images/jinxingcun/金星村 (1).jpg" alt="下淤村生态护岸" loading="lazy" onclick="openLightbox(this.src)">
+                    <img src="images/jinxingcun/金星村 (5).jpg" alt="金星村两山展示馆" loading="lazy" onclick="openLightbox(this.src)">
+                    <img src="images/jinxingcun/金星村 (10).jpg" alt="金星村茶园" loading="lazy" onclick="openLightbox(this.src)">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ⑥ 课程目标 ==================== -->
+    <section class="section" id="goals">
+        <div class="section-header fade-in">
+            <span class="section-tag red">GOALS</span>
+            <h2>五维课程目标</h2>
+            <div class="divider"></div>
+            <p>地理核心素养 + 思政育人 · 十项具体目标</p>
+        </div>
+        <div class="goals-grid fade-in">
+            <div class="goal-card">
+                <div class="goal-icon"><i class="fa-solid fa-brain"></i></div>
+                <h4>综合思维</h4>
+                <ul>
+                    <li>从地形、水文、植被三要素分析福岭山游击根据地选址</li>
+                    <li>构建"自然环境—革命历史—绿色发展"思维导图</li>
+                </ul>
+            </div>
+            <div class="goal-card">
+                <div class="goal-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                <h4>区域认知</h4>
+                <ul>
+                    <li>在地形图上标注6个研学点并描述区位特征</li>
+                    <li>从"山区性、源头性、边界性"概括开化区域特征</li>
+                </ul>
+            </div>
+            <div class="goal-card">
+                <div class="goal-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                <h4>人地协调观</h4>
+                <ul>
+                    <li>用下淤村和金星村案例说明"两山"的不同转化路径</li>
+                    <li>提出对家乡发展的借鉴建议，体现因地制宜思想</li>
+                </ul>
+            </div>
+            <div class="goal-card">
+                <div class="goal-icon"><i class="fa-solid fa-flask"></i></div>
+                <h4>地理实践力</h4>
+                <ul>
+                    <li>规范使用水质检测仪和观星APP完成野外数据采集</li>
+                    <li>在手绘等高线图上标注地形部位，完成村民访谈</li>
+                </ul>
+            </div>
+            <div class="goal-card">
+                <div class="goal-icon"><i class="fa-solid fa-star"></i></div>
+                <h4>思政育人</h4>
+                <ul>
+                    <li>阐释"红色基因"与"绿色发展"的内在联系</li>
+                    <li>体悟从"革命守土"到"生态护源"的初心传承</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 特色活动 ==================== -->
+    <section class="section" id="activities">
+        <div class="section-header fade-in">
+            <span class="section-tag">HIGHLIGHTS</span>
+            <h2>特色活动</h2>
+            <div class="divider"></div>
+            <p>两大跨学科实践活动，实现红色教育与地理实践的深度融合</p>
+        </div>
+        <div class="activities-grid fade-in">
+            <div class="activity-card">
+                <div class="activity-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+                <div>
+                    <h4>红军密信地理破译</h4>
+                    <p>依托库坑红色古村情境，设计"地理密信"任务卡。学生通过方位判断、地图标注、地形观察和点位验证，理解山地环境对革命活动的支撑作用，实现红色教育与地理实践的有机融合。</p>
+                </div>
+            </div>
+            <div class="activity-card">
+                <div class="activity-icon"><i class="fa-solid fa-star"></i></div>
+                <div>
+                    <h4>暗夜资源测评与星空辨向</h4>
+                    <p>在高田坑暗夜星空保护地，学生使用测光工具和星图APP记录光环境状况，学习星空辨向方法，分析暗夜保护对生态系统、乡村文旅和可持续发展的意义。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 课程评价 ==================== -->
+    <section class="section" id="evaluation">
+        <div class="section-header fade-in">
+            <span class="section-tag red">EVALUATION</span>
+            <h2>课程评价体系</h2>
+            <div class="divider"></div>
+            <p>"五育同源"五维评价 · 过程与终结相结合 · 自评互评师评三元主体</p>
+        </div>
+        <div class="eval-framework fade-in">
+            <!-- 五育 -->
+            <div class="eval-five-grid">
+                <div class="eval-item">
+                    <div class="eval-badge">育 魂</div>
+                    <div class="eval-label">红色传承力</div>
+                    <div class="eval-score">12分</div>
+                </div>
+                <div class="eval-item">
+                    <div class="eval-badge">育 境</div>
+                    <div class="eval-label">生态守护力</div>
+                    <div class="eval-score">12分</div>
+                </div>
+                <div class="eval-item">
+                    <div class="eval-badge">育 能</div>
+                    <div class="eval-label">地理实践力</div>
+                    <div class="eval-score">12分</div>
+                </div>
+                <div class="eval-item">
+                    <div class="eval-badge">育 合</div>
+                    <div class="eval-label">团队协作力</div>
+                    <div class="eval-score">12分</div>
+                </div>
+                <div class="eval-item">
+                    <div class="eval-badge">育 行</div>
+                    <div class="eval-label">价值成长力</div>
+                    <div class="eval-score">12分</div>
+                </div>
+            </div>
+            <!-- 评价权重 -->
+            <div class="eval-meta">
+                <span>🔍 <strong>过程性评价 60分</strong>（自评20% + 互评40% + 师评40%）</span>
+                <span>📋 <strong>终结性评价 40分</strong>（项目成果展25分 + 综合反思15分）</span>
+            </div>
+            <!-- 评分等级 -->
+            <div class="eval-levels">
+                <div class="level-card"><strong>优秀</strong>数据完整、逻辑清晰、能提出有现实意义的建议</div>
+                <div class="level-card"><strong>良好</strong>任务完成较好、分析基本准确、建议较合理</div>
+                <div class="level-card"><strong>合格</strong>在帮助下完成基本任务、有一定分析</div>
+                <div class="level-card"><strong>待改进</strong>参与度不足、需加强地理知识运用</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 安全保障 ==================== -->
+    <section class="section" id="safety">
+        <div class="section-header fade-in">
+            <span class="section-tag">SAFETY</span>
+            <h2>安全保障</h2>
+            <div class="divider"></div>
+            <p>五维保障体系，确保研学活动安全有序开展</p>
+        </div>
+        <div class="safety-grid fade-in">
+            <div class="safety-card">
+                <div class="safety-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <h4>安全防控保障</h4>
+                <p>提前排查所有点位风险点，划定安全活动范围。每10名学生配1名导师+1名安全员，高风险活动实行"双导师制"，校医全程随行。</p>
+            </div>
+            <div class="safety-card">
+                <div class="safety-icon"><i class="fa-solid fa-sitemap"></i></div>
+                <h4>组织管理保障</h4>
+                <p>学校统筹课程衔接，后勤保障正规车辆与达标餐饮。行前组织1课时防溺水、防走失、野外避险专项培训与应急演练。</p>
+            </div>
+            <div class="safety-card">
+                <div class="safety-icon"><i class="fa-solid fa-handshake"></i></div>
+                <h4>场地合作保障</h4>
+                <p>与六大研学点签订安全合作协议，确保场地优先使用权与专业讲解支持。各基地预留应急避险场所。</p>
+            </div>
+        </div>
+        <div class="safety-emergency fade-in">
+            <h4><i class="fa-solid fa-triangle-exclamation"></i> 应急响应预案</h4>
+            <div class="emergency-rows">
+                <div class="emergency-level">
+                    <h5 class="l1">人员受伤或突发疾病</h5>
+                    <p>现场教师立即进行基础处置，同步联系池淮镇卫生院、长虹乡卫生院等就近医疗点，5分钟内上报总负责人并通知家长，安排专人护送就医。校医全程随行，急救包覆盖消毒、止血、防暑、防蛇虫及抗过敏药品。</p>
+                </div>
+                <div class="emergency-level">
+                    <h5 class="l2">设备故障或物资不足</h5>
+                    <p>启动备用工具包（含备用水质检测盒、指南针、纸质星图），调整当日任务顺序，优先完成不依赖故障设备的环节，确保研学进度不受影响。</p>
+                </div>
+                <div class="emergency-level">
+                    <h5 class="l3">天气突变</h5>
+                    <p>启动室内替代方案：Day1钱江源生态勘测改为国家公园生态馆参观，Day2夜间观星改为高田坑天文馆穹顶观影，Day3户外调研改为乡村振兴主题座谈。全体师生提前知悉各点位室内避险场所位置。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 研学风采图集 ==================== -->
+    <section class="section" id="gallery">
+        <div class="section-header fade-in">
+            <span class="section-tag">GALLERY</span>
+            <h2>研学风采</h2>
+            <div class="divider"></div>
+            <p>实地考察精彩瞬间</p>
+        </div>
+        <div class="gallery-bento fade-in">
+            <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><img src="images/qianjiangyuan/钱江源森林公园 (14).jpg" alt="钱江源风光" loading="lazy"></div>
+            <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><img src="images/fulingshan/福岭山 (15).jpg" alt="福岭山旧址" loading="lazy"></div>
+            <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><img src="images/jinxingcun/金星村 (15).jpg" alt="金星村" loading="lazy"></div>
+            <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><img src="images/group/考察合照 (3).jpg" alt="小组探究" loading="lazy"></div>
+            <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><img src="images/group/考察合照 (1).jpg" alt="考察合照1" loading="lazy"></div>
+            <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><img src="images/jinxingcun/金星村 (20).jpg" alt="古村风貌" loading="lazy"></div>
+            <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><img src="images/fulingshan/福岭山 (20).jpg" alt="山地观察" loading="lazy"></div>
+            <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><img src="images/group/考察合照 (5).jpg" alt="考察合照2" loading="lazy"></div>
+        </div>
+    </section>
+
+    <!-- ==================== ⑦ 报名通道 ==================== -->
+    <section class="section" id="signup">
+        <div class="section-header fade-in">
+            <span class="section-tag red">SIGN UP</span>
+            <h2>研学报名</h2>
+            <div class="divider"></div>
+            <p>填写以下信息，加入这场红色与绿色交织的地理探索之旅</p>
+        </div>
+        <div class="signup-wrapper fade-in">
+            <!-- 左侧：亮点提示 -->
+            <div class="signup-info">
+                <h3><i class="fa-solid fa-paper-plane"></i> 研学亮点</h3>
+                <ul class="highlight-list">
+                    <li><i class="fa-solid fa-calendar-check"></i> <span><strong>行程时间：</strong>3天2夜</span></li>
+                    <li><i class="fa-solid fa-location-dot"></i> <span><strong>研学地点：</strong>浙江衢州开化县（6大研学点）</span></li>
+                    <li><i class="fa-solid fa-users"></i> <span><strong>适合对象：</strong>高二选考地理学生</span></li>
+                    <li><i class="fa-solid fa-graduation-cap"></i> <span><strong>课程特色：</strong>UbD + PBL 双模型驱动</span></li>
+                    <li><i class="fa-solid fa-leaf"></i> <span><strong>核心主题：</strong>红脉护绿源 · 地理践初心</span></li>
+                    <li><i class="fa-solid fa-clock"></i> <span><strong>报名截止：</strong>出发前15天</span></li>
+                    <li><i class="fa-solid fa-phone"></i> <span><strong>咨询电话：</strong>18968745981</span></li>
+                </ul>
+            </div>
+            <!-- 右侧：报名表单 -->
+            <div class="signup-form-card" id="signupFormCard">
+                <form id="signupForm" onsubmit="handleSubmit(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>姓名 <span class="required">*</span></label>
+                            <input type="text" id="name" placeholder="请输入真实姓名" required>
+                        </div>
+                        <div class="form-group">
+                            <label>性别 <span class="required">*</span></label>
+                            <select id="gender" required>
+                                <option value="">请选择</option>
+                                <option value="男">男</option>
+                                <option value="女">女</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>学校名称 <span class="required">*</span></label>
+                            <input type="text" id="school" placeholder="请输入所在学校" required>
+                        </div>
+                        <div class="form-group">
+                            <label>年级班级 <span class="required">*</span></label>
+                            <select id="grade" required>
+                                <option value="">请选择</option>
+                                <option value="高一">高一</option>
+                                <option value="高二">高二</option>
+                                <option value="高三">高三</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>联系电话 <span class="required">*</span></label>
+                            <input type="tel" id="phone" placeholder="请输入手机号码" required>
+                        </div>
+                        <div class="form-group">
+                            <label>身份证号 <span class="required">*</span></label>
+                            <input type="text" id="idCard" placeholder="用于购买保险" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>紧急联系人 <span class="required">*</span></label>
+                            <input type="text" id="emergencyName" placeholder="家长/监护人姓名" required>
+                        </div>
+                        <div class="form-group">
+                            <label>紧急联系电话 <span class="required">*</span></label>
+                            <input type="tel" id="emergencyPhone" placeholder="家长/监护人电话" required>
+                        </div>
+                    </div>
+                    <div class="form-row single">
+                        <div class="form-group">
+                            <label>饮食禁忌（可多选）</label>
+                            <div class="checkbox-group" id="dietGroup">
+                                <label><input type="checkbox" value="无"> 无特殊要求</label>
+                                <label><input type="checkbox" value="海鲜过敏"> 海鲜过敏</label>
+                                <label><input type="checkbox" value="花生过敏"> 花生过敏</label>
+                                <label><input type="checkbox" value="乳糖不耐"> 乳糖不耐</label>
+                                <label><input type="checkbox" value="素食"> 素食</label>
+                                <label><input type="checkbox" value="其他"> 其他</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row single">
+                        <div class="form-group">
+                            <label>备注（选填）</label>
+                            <textarea id="notes" placeholder="如有特殊需求或身体状况，请在此说明…"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit">提 交 报 名</button>
+                </form>
+                <!-- 提交成功提示（默认隐藏） -->
+                <div class="form-success" id="formSuccess">
+                    <div class="success-icon"><i class="fa-solid fa-check"></i></div>
+                    <h3>报名提交成功！</h3>
+                    <p>我们将在3个工作日内与您联系确认，<br>请保持电话畅通。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ⑧ 页脚 ==================== -->
+    <footer class="footer">
+        <div class="footer-title">红脉护绿源 · 地理践初心</div>
+        <p>开化"大思政"视域下地理研学实践方案 &copy; 2025</p>
+        <p style="margin-top:8px;">浙江 · 衢州 · 开化 | 钱江源国家公园</p>
+    </footer>
+
+    <!-- ==================== 图片灯箱（隐藏） ==================== -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <span class="lightbox-prev" onclick="event.stopPropagation();navigateLightbox(-1)"><i class="fa-solid fa-chevron-left"></i></span>
+        <span class="lightbox-next" onclick="event.stopPropagation();navigateLightbox(1)"><i class="fa-solid fa-chevron-right"></i></span>
+        <img src="" alt="大图预览" id="lightboxImg">
+    </div>
+
+    <!-- ============ JavaScript ============ -->
+    <script>
+        // ===== 移动端菜单切换 =====
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+
+        // 点击导航链接后关闭移动端菜单
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => navLinks.classList.remove('open'));
+        });
+
+        // ===== 导航栏滚动阴影 =====
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ===== 导航高亮当前板块 =====
+        const sections = document.querySelectorAll('section[id]');
+        const navAnchors = document.querySelectorAll('.nav-links a');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navAnchors.forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('data-section') === current) {
+                    a.classList.add('active');
+                }
+            });
+        });
+
+        // ===== 滚动渐入动画 =====
+        const fadeEls = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+        fadeEls.forEach(el => observer.observe(el));
+
+        // ===== 图片灯箱 =====
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        let galleryImages = [];
+        let currentIndex = 0;
+
+        // 收集所有可点击的图片（day-photos 和 bento item 中的 img）
+        function collectGalleryImages() {
+            galleryImages = [];
+            const allImgs = document.querySelectorAll('.day-photos img, .bento-item img');
+            allImgs.forEach(img => galleryImages.push(img.src));
+        }
+        collectGalleryImages();
+
+        function openLightbox(src) {
+            collectGalleryImages(); // 每次都刷新
+            currentIndex = galleryImages.indexOf(src);
+            if (currentIndex === -1) currentIndex = 0;
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function navigateLightbox(dir) {
+            currentIndex = (currentIndex + dir + galleryImages.length) % galleryImages.length;
+            lightboxImg.src = galleryImages[currentIndex];
+        }
+
+        // 键盘控制
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navigateLightbox(-1);
+            if (e.key === 'ArrowRight') navigateLightbox(1);
+        });
+
+        // ===== 报名表单处理 =====
+        function handleSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('signupForm');
+            const success = document.getElementById('formSuccess');
+
+            // 简单验证手机号
+            const phone = document.getElementById('phone').value.trim();
+            if (!/^1[3-9]\d{9}$/.test(phone)) {
+                alert('请输入正确的11位手机号码');
+                return;
+            }
+
+            // 简单验证身份证号（18位）
+            const idCard = document.getElementById('idCard').value.trim();
+            if (!/^\d{17}[\dXx]$/.test(idCard)) {
+                alert('请输入正确的18位身份证号码');
+                return;
+            }
+
+            // 收集饮食禁忌
+            const checkedDiets = document.querySelectorAll('#dietGroup input:checked');
+            const diets = Array.from(checkedDiets).map(cb => cb.value);
+
+            // 构建报名数据（实际项目中这里发送到后端）
+            const formData = {
+                name: document.getElementById('name').value.trim(),
+                gender: document.getElementById('gender').value,
+                school: document.getElementById('school').value.trim(),
+                grade: document.getElementById('grade').value,
+                phone: phone,
+                idCard: idCard,
+                emergencyName: document.getElementById('emergencyName').value.trim(),
+                emergencyPhone: document.getElementById('emergencyPhone').value.trim(),
+                diets: diets,
+                notes: document.getElementById('notes').value.trim(),
+            };
+            console.log('报名数据：', formData);
+
+            // 显示成功提示
+            form.style.display = 'none';
+            success.classList.add('show');
+        }
+    </script>
+</body>
+</html>
