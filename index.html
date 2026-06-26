@@ -495,6 +495,37 @@
         .emergency-level h5.l3 { color: #3878B8; }
         .emergency-level p { font-size: 0.84rem; color: var(--text-mid); line-height: 1.7; }
 
+        /* ===== 附件下载区 ===== */
+        .download-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+        }
+        .download-card {
+            background: var(--white); border-radius: var(--border-radius);
+            padding: 24px; box-shadow: var(--shadow);
+            display: flex; align-items: center; gap: 16px;
+            transition: var(--transition); cursor: pointer;
+            text-decoration: none; color: inherit;
+        }
+        .download-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+        .download-icon {
+            width: 50px; height: 50px; min-width: 50px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem;
+        }
+        .download-icon.pdf { background: #FFF0F0; color: #D44; }
+        .download-icon.docx { background: #F0F4FF; color: #48D; }
+        .download-icon.img { background: #F0FFF4; color: #2A8; }
+        .download-info { flex: 1; min-width: 0; }
+        .download-info .dl-name {
+            font-weight: 500; font-size: 0.92rem; letter-spacing: 0.5px;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .download-info .dl-meta {
+            font-size: 0.78rem; color: var(--text-light); margin-top: 3px;
+        }
+        .download-card .dl-arrow { color: var(--text-light); font-size: 0.9rem; transition: var(--transition); }
+        .download-card:hover .dl-arrow { color: var(--green-deep); transform: translateX(3px); }
+
         /* ===== 报名表单区 ===== */
         .signup-wrapper {
             display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
@@ -609,6 +640,7 @@
             .safety-grid { grid-template-columns: repeat(2, 1fr); }
             .safety-emergency .emergency-rows { grid-template-columns: 1fr; }
             .activities-grid { grid-template-columns: 1fr; }
+            .download-grid { grid-template-columns: 1fr 1fr; }
             .gallery-bento {
                 grid-template-columns: repeat(2, 1fr);
                 grid-template-rows: 200px 200px 180px 180px;
@@ -660,6 +692,7 @@
             .eval-levels { grid-template-columns: 1fr; }
             .safety-grid { grid-template-columns: 1fr; }
             .eval-meta { flex-direction: column; gap: 8px; text-align: center; }
+            .download-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 480px) {
             .hero h1 { font-size: 1.8rem; letter-spacing: 3px; }
@@ -684,6 +717,7 @@
             <li><a href="#evaluation" data-section="evaluation">评价体系</a></li>
             <li><a href="#safety" data-section="safety">安全保障</a></li>
             <li><a href="#gallery" data-section="gallery">研学风采</a></li>
+            <li><a href="#downloads" data-section="downloads">资料下载</a></li>
             <li><a href="#signup" data-section="signup">研学报名</a></li>
         </ul>
         <div class="nav-toggle" id="navToggle"><i class="fa-solid fa-bars"></i></div>
@@ -1045,6 +1079,58 @@
             <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><img src="images/jinxingcun/jxc_20.jpg" alt="古村风貌" loading="lazy" onload="this.classList.add('loaded');this.parentElement.classList.add('loaded')"></div>
             <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><img src="images/fulingshan/fls_20.jpg" alt="山地观察" loading="lazy" onload="this.classList.add('loaded');this.parentElement.classList.add('loaded')"></div>
             <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><img src="images/group/group_5.jpg" alt="考察合照2" loading="lazy" onload="this.classList.add('loaded');this.parentElement.classList.add('loaded')"></div>
+        </div>
+    </section>
+
+    <!-- ==================== 附件下载 ==================== -->
+    <section class="section" id="downloads">
+        <div class="section-header fade-in">
+            <span class="section-tag red">DOWNLOAD</span>
+            <h2>研学资料下载</h2>
+            <div class="divider"></div>
+            <p>教师手册、地图、安全文件等配套资料，点击即可下载</p>
+        </div>
+        <div class="download-grid fade-in">
+            <a class="download-card" href="downloads/开化地理研学教师手册.pdf" download>
+                <div class="download-icon pdf"><i class="fa-solid fa-file-pdf"></i></div>
+                <div class="download-info">
+                    <div class="dl-name">开化地理研学教师手册</div>
+                    <div class="dl-meta">PDF · 2.9 MB</div>
+                </div>
+                <span class="dl-arrow"><i class="fa-solid fa-download"></i></span>
+            </a>
+            <a class="download-card" href="downloads/研学地图.png" download>
+                <div class="download-icon img"><i class="fa-solid fa-map"></i></div>
+                <div class="download-info">
+                    <div class="dl-name">研学地图</div>
+                    <div class="dl-meta">PNG · 2.9 MB</div>
+                </div>
+                <span class="dl-arrow"><i class="fa-solid fa-download"></i></span>
+            </a>
+            <a class="download-card" href="downloads/研学安全告知书与家长知情同意书.docx" download>
+                <div class="download-icon docx"><i class="fa-solid fa-file-word"></i></div>
+                <div class="download-info">
+                    <div class="dl-name">研学安全告知书与家长知情同意书</div>
+                    <div class="dl-meta">Word · 18 KB</div>
+                </div>
+                <span class="dl-arrow"><i class="fa-solid fa-download"></i></span>
+            </a>
+            <a class="download-card" href="downloads/乡村振兴访谈提纲.docx" download>
+                <div class="download-icon docx"><i class="fa-solid fa-file-lines"></i></div>
+                <div class="download-info">
+                    <div class="dl-name">乡村振兴访谈提纲</div>
+                    <div class="dl-meta">Word · 20 KB</div>
+                </div>
+                <span class="dl-arrow"><i class="fa-solid fa-download"></i></span>
+            </a>
+            <a class="download-card" href="downloads/应急联系人与医疗点信息表.docx" download>
+                <div class="download-icon docx"><i class="fa-solid fa-file-shield"></i></div>
+                <div class="download-info">
+                    <div class="dl-name">应急联系人与医疗点信息表</div>
+                    <div class="dl-meta">Word · 24 KB</div>
+                </div>
+                <span class="dl-arrow"><i class="fa-solid fa-download"></i></span>
+            </a>
         </div>
     </section>
 

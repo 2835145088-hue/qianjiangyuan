@@ -1,5 +1,6 @@
 # 不部署的文件
 *.docx
+!downloads/*.docx
 *.ps1
 *.txt
 _generator/
