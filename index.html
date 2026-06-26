@@ -288,10 +288,15 @@
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
             margin-top: 16px;
         }
-        .day-photos img {
-            border-radius: 8px; height: 180px; object-fit: cover; width: 100%;
-            cursor: pointer; transition: var(--transition);
+        .day-photos a {
+            display: block; border-radius: 8px; overflow: hidden;
+            height: 180px; cursor: pointer;
         }
+        .day-photos a img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: var(--transition);
+        }
+        .day-photos a:hover img { transform: scale(1.05); }
         .day-photos img:hover { transform: scale(1.03); }
 
         /* ===== 目标区 ===== */
@@ -340,6 +345,36 @@
             transition: transform 0.5s ease;
         }
         .gallery-bento .bento-item:hover img { transform: scale(1.08); }
+
+        /* 骨架屏 */
+        .skeleton {
+            background: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s ease-in-out infinite;
+            border-radius: 8px;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .bento-item { position: relative; }
+        .bento-item img {
+            opacity: 0; transition: opacity 0.5s ease;
+        }
+        .bento-item img.loaded { opacity: 1; }
+        .bento-item .skeleton-overlay {
+            position: absolute; inset: 0; z-index: 1;
+            pointer-events: none;
+        }
+        .day-photos a { position: relative; display: block; border-radius: 8px; overflow: hidden; }
+        .day-photos a img {
+            opacity: 0; transition: opacity 0.5s ease;
+        }
+        .day-photos a img.loaded { opacity: 1; }
+        .day-photos a .skeleton-overlay {
+            position: absolute; inset: 0; z-index: 1;
+            pointer-events: none;
+        }
         /* 便当盒排列 */
         .gallery-bento .bento-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 3; }
         .gallery-bento .bento-item:nth-child(2) { grid-column: 3 / 4; grid-row: 1 / 2; }
@@ -782,9 +817,9 @@
                 <h4 class="red-accent">核心问题：山地地理环境如何支撑革命使命并延续为生态守护？</h4>
                 <p>上午在福岭山浙西革命旧址群，学生通过<strong>"烽火踏勘→纸上点兵→山川为证→众志论道"</strong>四个环节，结合地形图与沙盘推演，实地对照山脊线和溪谷，分析山地地形、植被、水文条件对游击根据地建设的支撑作用。下午在钱江源国家森林公园，通过<strong>"初心之问→源头探微→清源论道"</strong>三个环节，开展水质检测与植被覆盖率样方统计，探究源头生态涵养功能，建立<strong>"革命守土→生态护源"</strong>的人地关联认知。晚间在住宿点会议室整合一日成果，观看《方志敏·血战东南》等红色影像。</p>
                 <div class="day-photos">
-                    <img src="images/fulingshan/福岭山 (1).jpg" alt="福岭山革命旧址" loading="lazy" onclick="openLightbox(this.src)">
-                    <img src="images/qianjiangyuan/钱江源森林公园 (1).jpg" alt="钱江源国家森林公园" loading="lazy" onclick="openLightbox(this.src)">
-                    <img src="images/fulingshan/福岭山 (5).jpg" alt="福岭山山地考察" loading="lazy" onclick="openLightbox(this.src)">
+                    <a onclick="openLightbox(this.querySelector('img').src)"><div class="skeleton-overlay skeleton"></div><img src="images/fulingshan/福岭山 (1).jpg" alt="福岭山革命旧址" loading="lazy" onload="this.classList.add('loaded')"></a>
+                    <a onclick="openLightbox(this.querySelector('img').src)"><div class="skeleton-overlay skeleton"></div><img src="images/qianjiangyuan/钱江源森林公园 (1).jpg" alt="钱江源国家森林公园" loading="lazy" onload="this.classList.add('loaded')"></a>
+                    <a onclick="openLightbox(this.querySelector('img').src)"><div class="skeleton-overlay skeleton"></div><img src="images/fulingshan/福岭山 (5).jpg" alt="福岭山山地考察" loading="lazy" onload="this.classList.add('loaded')"></a>
                 </div>
             </div>
         </div>
@@ -802,9 +837,9 @@
                 <h4 class="red-accent">核心问题：红色选址智慧与暗夜资源保护之间有何地理联系？</h4>
                 <p>上午在库坑红色古村，学生领取<strong>"红军密信"任务卡</strong>，通过"历史余韵→密信追踪→围炉解密"三个环节，使用指南针和地形图在古村内实地破译密信点位，理解革命年代<strong>"靠山、近水、隐蔽"</strong>的聚落选址智慧。下午在高田坑暗夜星空保护地，通过"穹顶之下→追光者说→星野拾萃→银河为证"四个环节，在天文馆学习星空知识，用测光APP采集光环境数据，实地调研<strong>暗夜经济</strong>如何带动乡村振兴。晚间在观星台辨认北斗七星、北极星与夏季大三角，感悟从"观星辨向"到"暗夜守护"的初心传承。</p>
                 <div class="day-photos">
-                    <img src="images/fulingshan/福岭山 (10).jpg" alt="库坑红色古村" loading="lazy" onclick="openLightbox(this.src)">
-                    <img src="images/fulingshan/福岭山 (15).jpg" alt="高田坑古村落" loading="lazy" onclick="openLightbox(this.src)">
-                    <img src="images/qianjiangyuan/钱江源森林公园 (10).jpg" alt="暗夜星空观测" loading="lazy" onclick="openLightbox(this.src)">
+                    <a onclick="openLightbox(this.querySelector('img').src)"><div class="skeleton-overlay skeleton"></div><img src="images/fulingshan/福岭山 (10).jpg" alt="库坑红色古村" loading="lazy" onload="this.classList.add('loaded')"></a>
+                    <a onclick="openLightbox(this.querySelector('img').src)"><div class="skeleton-overlay skeleton"></div><img src="images/fulingshan/福岭山 (15).jpg" alt="高田坑古村落" loading="lazy" onload="this.classList.add('loaded')"></a>
+                    <a onclick="openLightbox(this.querySelector('img').src)"><div class="skeleton-overlay skeleton"></div><img src="images/qianjiangyuan/钱江源森林公园 (10).jpg" alt="暗夜星空观测" loading="lazy" onload="this.classList.add('loaded')"></a>
                 </div>
             </div>
         </div>
@@ -822,9 +857,9 @@
                 <h4>核心问题：下淤村与金星村的"两山"转化为何路径不同？</h4>
                 <p>上午在下淤村，通过<strong>"山河之问→田野取证→证据交锋"</strong>三个环节，登上观景台俯瞰"山、水、林、田、湖、村"空间格局，沿马金溪生态护岸徒步观察<strong>"五水共治"与滨水生态修复</strong>成果，走访精品民宿和农家乐，访谈经营户了解从<strong>"卖石头到卖风景"</strong>的转型历程。下午在金星村，通过<strong>"大山之下→圆桌问路"</strong>两个环节，参观"两山"展示馆，探访千年银杏树公园、茶园和民宿集群，考察<strong>"茶叶+旅游+康养"产业链模式</strong>。傍晚开展圆桌会议，利用AI生成SWOT分析框架，完成《两村转型特征对比表》和调研报告，各小组5分钟汇报，教师提炼<strong>"123"开化经验</strong>：一个理念引领、两条路径并进、三方力量协同。</p>
                 <div class="day-photos">
-                    <img src="images/jinxingcun/金星村 (1).jpg" alt="下淤村生态护岸" loading="lazy" onclick="openLightbox(this.src)">
-                    <img src="images/jinxingcun/金星村 (5).jpg" alt="金星村两山展示馆" loading="lazy" onclick="openLightbox(this.src)">
-                    <img src="images/jinxingcun/金星村 (10).jpg" alt="金星村茶园" loading="lazy" onclick="openLightbox(this.src)">
+                    <a onclick="openLightbox(this.querySelector('img').src)"><div class="skeleton-overlay skeleton"></div><img src="images/jinxingcun/金星村 (1).jpg" alt="下淤村生态护岸" loading="lazy" onload="this.classList.add('loaded')"></a>
+                    <a onclick="openLightbox(this.querySelector('img').src)"><div class="skeleton-overlay skeleton"></div><img src="images/jinxingcun/金星村 (5).jpg" alt="金星村两山展示馆" loading="lazy" onload="this.classList.add('loaded')"></a>
+                    <a onclick="openLightbox(this.querySelector('img').src)"><div class="skeleton-overlay skeleton"></div><img src="images/jinxingcun/金星村 (10).jpg" alt="金星村茶园" loading="lazy" onload="this.classList.add('loaded')"></a>
                 </div>
             </div>
         </div>
@@ -1013,14 +1048,14 @@
             <p>实地考察精彩瞬间</p>
         </div>
         <div class="gallery-bento fade-in">
-            <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><img src="images/qianjiangyuan/钱江源森林公园 (14).jpg" alt="钱江源风光" loading="lazy"></div>
-            <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><img src="images/fulingshan/福岭山 (15).jpg" alt="福岭山旧址" loading="lazy"></div>
-            <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><img src="images/jinxingcun/金星村 (15).jpg" alt="金星村" loading="lazy"></div>
-            <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><img src="images/group/考察合照 (3).jpg" alt="小组探究" loading="lazy"></div>
-            <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><img src="images/group/考察合照 (1).jpg" alt="考察合照1" loading="lazy"></div>
-            <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><img src="images/jinxingcun/金星村 (20).jpg" alt="古村风貌" loading="lazy"></div>
-            <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><img src="images/fulingshan/福岭山 (20).jpg" alt="山地观察" loading="lazy"></div>
-            <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><img src="images/group/考察合照 (5).jpg" alt="考察合照2" loading="lazy"></div>
+            <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><div class="skeleton-overlay skeleton"></div><img src="images/qianjiangyuan/钱江源森林公园 (14).jpg" alt="钱江源风光" loading="lazy" onload="this.classList.add('loaded')"></div>
+            <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><div class="skeleton-overlay skeleton"></div><img src="images/fulingshan/福岭山 (15).jpg" alt="福岭山旧址" loading="lazy" onload="this.classList.add('loaded')"></div>
+            <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><div class="skeleton-overlay skeleton"></div><img src="images/jinxingcun/金星村 (15).jpg" alt="金星村" loading="lazy" onload="this.classList.add('loaded')"></div>
+            <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><div class="skeleton-overlay skeleton"></div><img src="images/group/考察合照 (3).jpg" alt="小组探究" loading="lazy" onload="this.classList.add('loaded')"></div>
+            <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><div class="skeleton-overlay skeleton"></div><img src="images/group/考察合照 (1).jpg" alt="考察合照1" loading="lazy" onload="this.classList.add('loaded')"></div>
+            <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><div class="skeleton-overlay skeleton"></div><img src="images/jinxingcun/金星村 (20).jpg" alt="古村风貌" loading="lazy" onload="this.classList.add('loaded')"></div>
+            <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><div class="skeleton-overlay skeleton"></div><img src="images/fulingshan/福岭山 (20).jpg" alt="山地观察" loading="lazy" onload="this.classList.add('loaded')"></div>
+            <div class="bento-item" onclick="openLightbox(this.querySelector('img').src)"><div class="skeleton-overlay skeleton"></div><img src="images/group/考察合照 (5).jpg" alt="考察合照2" loading="lazy" onload="this.classList.add('loaded')"></div>
         </div>
     </section>
 
